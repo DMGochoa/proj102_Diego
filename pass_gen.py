@@ -6,7 +6,7 @@ Diego Alejandro Moreno Gallón
 """
 import random
 
-def password_gen(length=8, expects=None):
+def password_gen(length=8, expects=tuple()):
     """_summary_
 
     Args:
@@ -54,6 +54,20 @@ def password_gen(length=8, expects=None):
     return password
         
 if __name__ == '__main__':
-    print(password_gen())
-    print(password_gen(expects=(1, 5, 1, 1)))
+    
+    for i in range(10):
+        print('#'*15, i, '#'*15)
+        new_password = password_gen()
+        print('The new password has a length of {}. \nThe new password is {}'.format(len(new_password), new_password))
+    
+    
+    print('\n\nTest for specific requirements')
+    lists_values = [[random.randint(0,10), random.randint(0,10), random.randint(0,10), random.randint(0,10)] for _ in range(10)]
+    gen_number = 1
+    for values in lists_values:
+        print('#'*15, gen_number, '#'*15)
+        new_password = password_gen(expects=(values[0], values[1], values[2], values[3]))
+        print('The new password has a length of {} and the input is {}. \nThe new password is {}'.format(len(new_password), sum(values), new_password))
+        gen_number += 1
+
         
