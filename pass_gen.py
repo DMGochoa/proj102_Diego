@@ -18,9 +18,9 @@ def password_gen(length=8, expects=tuple()):
     Returns:
         _type_: _description_
     """
-    if len(expects) < 4:
+    if len(expects) < 4 and len(expects) != 0:
         print('Number of elements need to be 4')
-        pass
+        return ''
     
     # Diferent characters that we will use
     uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G',
