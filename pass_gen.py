@@ -39,7 +39,7 @@ def password_gen(length=8, expects=tuple()):
              '^', '&', '$', '#', '"']
     
     # Condition if is a general password or if we need specific quantities
-    if expects:
+    if len(expects) == 4:
         # Lists to select a specific number of characters
         select_upper = [random.choice(uppercase) for _ in range(int(expects[0]))]
         select_lower = [random.choice(lowercase) for _ in range(int(expects[1]))]
