@@ -13,13 +13,14 @@ def password_gen(length=8, expects=tuple()):
         length (int, optional): Total length of the password. Defaults to 8.
         expects (tuple, optional): Tuple that must contain 4 integer items 
                                    specifying the number of uppercase letters, 
-                                   lowercase letters, numbers and special characters.. Defaults to None.
+                                   lowercase letters, numbers and special characters.. Defaults to Tuple.
 
     Returns:
         _type_: _description_
     """
     if len(expects) < 4:
         print('Number of elements need to be 4')
+        pass
     
     # Diferent characters that we will use
     uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G',
