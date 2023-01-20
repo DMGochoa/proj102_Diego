@@ -12,7 +12,7 @@ class csv_control():
     """
     def __init__(self, pathfile) -> None:
         self.path = pathfile
-        self.data = dict()
+        self.read_csv()
     
     def read_csv(self):
         """
@@ -21,22 +21,41 @@ class csv_control():
         data = dict()
         with open(self.path, 'r') as file:
             reader = csv.DictReader(file) # Iterable with all the rows
+            # We iterate all the rows and save them in a dict with index of the app_name
             for i in reader:
                 data[i['app_name']] = i
-        self.data
+            self.header = list(i.keys())
+        self.data = data
     
     def add_data(self, info=dict()):
-        with open(self.path, 'w') as file:
-            reader = csv.DictReader(file) # Iterable with all the rows
-            for i in reader:
-                data[i['app_name']] = i
-        self.data
-    
-    
+        """Adding the new row to the data table
 
-def save_pass(password, pathfile):
-    pass
+        Args:
+            info (dict, optional): A dictionary with 3 the keys (columns) and the respective 
+            values. Defaults to dict().
+        """
+        self.data['app_name'] = info
+        
+    def save_csv(self):
+        with open(self.path, 'w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=self.header)
+            writer.writeheader()
+            for row in self.data.values():
+                writer.writerow(row)
+
 
 if __name__ == '__main__':
     csv_table = csv_control('./data.csv')
-    print(csv_table.data)#csv_table.read_csv().keys())
+    print(csv_table.header)
+    for key, value in csv_table.data.items():
+        print(key, value)
+        
+    new = {'app_name':'Youtube', 'creation_date':'20/01/2023', 'password':4}
+    csv_table.add_data(new)
+    print('\n'*2, 'New row was add')
+    for key, value in csv_table.data.items():
+        print(key, value)
+        
+    csv_table.save_csv()
+    
+    
