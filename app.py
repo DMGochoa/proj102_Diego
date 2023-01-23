@@ -32,18 +32,20 @@ class app:
             print('Options:')
             print("\t1. You will enter only the size")
             print("\t2. You will specify amounts of uppercase, lowercase, \n\tnumbers and special characters.")
-            if int(input('Option number: ')) == 1:
+            option = int(input('Option number: '))
+            self.clean_screen()
+            if option == 1:
                 length = int(input('Enter the size (minimum 8): '))
                 if length >= 8:
                     password = password_gen(length=length)
                     break
-            elif int(input('Option number: ')) == 2:
+            elif option == 2:
                 print('The sum of sizes needs to be equal or greatter than 8')
                 upper = input('Enter the amount of uppercase letters: ')
                 lower = input('Enter the amount of lowercase letters: ')
                 num = input('Enter the amount of numbers: ')
                 es_char = input('Enter the amount of especial characters: ')
-                def_tuple = (upper, lower, num, es_char)
+                def_tuple = (int(upper), int(lower), int(num), int(es_char))
                 if sum(def_tuple) >= 8:
                     password = password_gen(expects=def_tuple)
                     break
