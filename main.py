@@ -31,7 +31,7 @@ def menu_2(app_opt):
         if result:
             # Success in validation
             # Menu 4
-            print('1')
+            menu_4(app_opt)
             quit_menu_2 = True
         else:
             # No succes in validation
@@ -47,13 +47,31 @@ def menu_3(app_opt):
         result = app_opt.new_user(user_data[0], user_data[1])
         if result:
             # Successfully created
-            # Menu 4
+            menu_4(app_opt)
             quit_menu_3 = True
         else:
             # No succes in cretion
             if app_opt.repeat():
                 quit_menu_3 = True
-        
+
+def menu_4(app_opt):
+    quit_menu_4 = False
+    while not quit_menu_4:
+        app_opt.clean_screen()
+        decision = app_opt.main_options()
+        app_opt.clean_screen()
+        if decision == 1: # Show apps
+            app_opt.show_apps()
+            input('Press any key to return')
+        elif decision == 2: # New App
+            app_opt.new_app()
+            input('Press any key to return')
+        elif decision == 3: # Show app password
+            app_opt.es_app()
+            input('Press any key to return')
+        elif decision == 4: # Exit
+            app_opt.save()
+            quit_menu_4 = True
     
 def main():
     menu_1()

@@ -42,11 +42,16 @@ class csv_control():
             writer.writeheader() # write the header 
             # Save the info in each row
             for row in self.data.values():
-                writer.writerow(row)
+                if row['app_name'] == '':
+                    continue
+                else:
+                    writer.writerow(row)
                 
     def key_list(self):
         return list(self.data.keys())
-
+    
+    def specific_app(self, app_name):
+        return self.data[app_name]
 
 if __name__ == '__main__':
     csv_table = csv_control('./data.csv')
