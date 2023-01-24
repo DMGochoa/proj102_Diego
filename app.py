@@ -1,4 +1,6 @@
-
+"""
+Module with the app class
+"""
 import os # Paths manage
 import shutil # Copy and paste files
 import datetime

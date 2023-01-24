@@ -1,5 +1,5 @@
 """
-
+The module with menus and all the structure 
 """
 from app import app
 
@@ -15,7 +15,6 @@ def menu_1():
             menu_3(app_opt) # Menu to create New use
         elif decision1 == 3: # Quit
             quit_menu_1 = True
-
 
 # Notas:
 # Menu 2 y 3 son como menus de paso y se podrian combinar como una clase a parte
