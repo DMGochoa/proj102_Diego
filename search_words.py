@@ -7,7 +7,7 @@ opts.add_option("-w", "--word", dest='word', help="This is the word that you wou
 
 (options, arguments) = opts.parse_args()
 #print(options.fname)
-#print(options.word)
+# print(options.word)
 
 # Open file
 #file_name = input('Enter file Name: ')
@@ -24,12 +24,13 @@ for line in file:
 big_count = 0
 big_word = ''
 
-#for word, count in counts.items():
-#    if count > big_count:
-# 	    big_word = word
-# 	    big_count = count
+for word, count in counts.items():
+    if count > big_count:
+ 	    big_word = word
+ 	    big_count = count
+print('\n')
+print(f'You search "{options.word}" and appears {counts[options.word]}')
 
-print(f'Your search {options.word} and appears {counts[options.word]}')
-
-#print('The most frequent word es: ')
-#print(big_word, big_count)
+print('\n')
+print(f'The most frequent word is {big_word}, and appears {big_count} times')
+print('\n')
