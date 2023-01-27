@@ -1,5 +1,6 @@
 import random
 import string
+from abc import ABC, abstractmethod
 
 def generate_id(lenght=8):
     return ''.join(random.choices(string.ascii_uppercase, k=lenght))
@@ -10,27 +11,28 @@ class SupportTicket:
         self.customer = customer
         self.issue = issue
 
-class Strategy:
-    def execute(list_items):
+class Strategy(ABC):
+    @abstractmethod
+    def execute(self, ticket_list):
         pass
         
     
 class ConcreteStrategyQueu(Strategy):
-    def execute(list_items):
-        return list_items
+    def execute(self, ticket_list):
+        return ticket_list.copy()
 
 class ConcreteStrategyStack(Strategy):
-    def execute(list_items):
-        return reversed(item_list)
+    def execute(self, ticket_list):
+        return reversed(ticket_list.copy())
 
 class ConcreteStrategyRand_item(Strategy):
-    def execute(list_items):
-        list_copy = list_items.copy()
+    def execute(self, ticket_list):
+        list_copy = ticket_list.copy()
         random.shuffle(list_copy)
         return list_copy
 
 class CustomerSupport:
-    def __init__(self, processing_strategy=queu) -> None:
+    def __init__(self, processing_strategy) -> None:
         self.tickets = []
         self.processing_strategy = processing_strategy
 
@@ -42,8 +44,11 @@ class CustomerSupport:
             print("There are no tickets to process. Well done!!")
             return
         
-        for ticket in self.processing_strategy(self.tickets):
+        ticket_list = self.processing_strategy.execute(self.tickets)
+
+        for ticket in ticket_list:
             self.process_ticket(ticket)
+
 
     def process_ticket(self, ticket):
         print("============================")
@@ -52,7 +57,7 @@ class CustomerSupport:
         print(f"Issue: {ticket.issue}")
         print("============================")
 
-app = CustomerSupport("random")
+app = CustomerSupport(ConcreteStrategyQueu())
 
 app.create_ticket("John Snow", "My computer make strange sounds!!!")
 app.create_ticket("Sebastian Santos", "I can't upload any videos, help me!!!")
